@@ -23,6 +23,34 @@ namespace MatchGame
         public MainWindow()
         {
             InitializeComponent();
+
+            SetUpGame();
+        }
+
+        private void SetUpGame()
+        {
+            // 动物表情，在 https://emojipedia.org/nature/ 可以下载
+            List<string> animalEmoji = new List<string>()
+            {
+                "🙈", "🙈",
+                "🐶", "🐶",
+                "🦊", "🦊",
+                "🐱", "🐱",
+                "🐴", "🐴",
+                "🐮", "🐮",
+                "🐷", "🐷",
+                "🐭", "🐭"
+            };
+
+            // 随机排列动物表情
+            Random random = new Random();
+            foreach (TextBlock textBlock in mainGrid.Children.OfType<TextBlock>())
+            {
+                int index = random.Next(animalEmoji.Count);
+                string nextEmoji = animalEmoji[index];
+                textBlock.Text = nextEmoji;
+                animalEmoji.RemoveAt(index);
+            }
         }
     }
 }
